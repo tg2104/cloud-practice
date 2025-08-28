@@ -54,10 +54,15 @@ def recommend(movie):
 
     return recommended_movies,recommended_movies_posters
 
-movies = pd.DataFrame(movies_dict)
-
-movies_dict = pickle.load(open('movie_dict.pkl','rb'))
+try:
+    with open("movie_dict.pkl", "rb") as f:
+        movies_dict = pickle.load(f)
+    movies = pd.DataFrame(movies_dict)
+except Exception as e:
+    st.error(f"Error loading movie_dict.pkl: {e}")
+    movies = pd.DataFrame()  # fallback
 SIMILARITY_ID = "PUT_SIMILARITY_FILE_ID_HERE"
+
 # Download similarity.pkl from Drive
 download_file_from_drive(SIMILARITY_ID, "similarity.pkl")
 similarity = pickle.load(open("similarity.pkl", "rb"))
@@ -93,4 +98,5 @@ if st.button('Recommend'):
     with col1:
         st.text(names[4])
         st.image(posters[4])
+
 
