@@ -64,7 +64,8 @@ except Exception as e:
 SIMILARITY_ID = "PUT_SIMILARITY_FILE_ID_HERE"
 
 # Download similarity.pkl from Drive
-download_file_from_drive(1AbCdEfGhIjKlMnOpQrStUvWxYz, "similarity.pkl")
+SIMILARITY_ID = "1AbCdEfGhIjKlMnOpQrStUvWxYz"
+download_file_from_drive(SIMILARITY_ID, "similarity.pkl")
 similarity = pickle.load(open("similarity.pkl", "rb"))
 
 
