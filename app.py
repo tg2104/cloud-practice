@@ -61,7 +61,7 @@ try:
 except Exception as e:
     st.error(f"Error loading movie_dict.pkl: {e}")
     movies = pd.DataFrame()  # fallback
-SIMILARITY_ID = "PUT_SIMILARITY_FILE_ID_HERE"
+SIMILARITY_ID = "1AbCdEfGhIjKlMnOpQrStUvWxYz"
 
 # Download similarity.pkl from Drive
 SIMILARITY_ID = "1AbCdEfGhIjKlMnOpQrStUvWxYz"
@@ -99,6 +99,7 @@ if st.button('Recommend'):
     with col1:
         st.text(names[4])
         st.image(posters[4])
+
 
 
 
