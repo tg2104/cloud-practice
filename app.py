@@ -6,12 +6,18 @@ import pickle
 import pandas as pd
 import requests
 
+import os
+import gdown
+
 API_KEY = "c66ec16a34d3689c86820c72fc7a22ec"
 
 
 # from pandas.io.formats.format import return_docstring
 # from select import select
 
+def download_file_from_google_drive(url, output):
+    if not os.path.exists(output):
+        gdown.download(url, output, quiet=False)
 
 def fetch_poster(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={API_KEY}&language=en-US"
@@ -48,13 +54,13 @@ def recommend(movie):
 
     return recommended_movies,recommended_movies_posters
 
-
-movies_dict = pickle.load(open('movie_dict.pkl','rb'))
 movies = pd.DataFrame(movies_dict)
 
-similarity = pickle.load(open('similarity.pkl','rb'))
-
-
+movies_dict = pickle.load(open('movie_dict.pkl','rb'))
+SIMILARITY_ID = "PUT_SIMILARITY_FILE_ID_HERE"
+# Download similarity.pkl from Drive
+download_file_from_drive(SIMILARITY_ID, "similarity.pkl")
+similarity = pickle.load(open("similarity.pkl", "rb"))
 
 
 st.title('Movie Recommender System')
@@ -87,3 +93,4 @@ if st.button('Recommend'):
     with col1:
         st.text(names[4])
         st.image(posters[4])
+
