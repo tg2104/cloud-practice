@@ -64,7 +64,7 @@ except Exception as e:
 SIMILARITY_ID = "PUT_SIMILARITY_FILE_ID_HERE"
 
 # Download similarity.pkl from Drive
-download_file_from_drive(SIMILARITY_ID, "similarity.pkl")
+download_file_from_drive(1AbCdEfGhIjKlMnOpQrStUvWxYz, "similarity.pkl")
 similarity = pickle.load(open("similarity.pkl", "rb"))
 
 
@@ -98,5 +98,6 @@ if st.button('Recommend'):
     with col1:
         st.text(names[4])
         st.image(posters[4])
+
 
 
